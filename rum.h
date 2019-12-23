@@ -11,13 +11,15 @@ public:
 
     Rum () {
 
+        type = 'R';
+
     }
 
-    Rum(QString abfuellung, QString name, bool melasse, bool zuckerrohr, bool farbstoff, bool singleBarel, unsigned int preisLeistung,
-        unsigned int rauchig, unsigned int suesse, unsigned int wuerze, unsigned int fruchtig,
-        QString brennerei, QString herkunft, unsigned int alter, float alkoholgehalt, QString destillationsDatum,
-                       QString bottleDatum, QString fassTyp, QString region, unsigned int bewertung,
-                       unsigned int fuellStand, QString geschmacksrichtung, QString beschreibung, QString flaschennummer) :
+    Rum(QString abfuellung, QString name, bool melasse, bool zuckerrohr, bool farbstoff, bool singleBarel, int preisLeistung,
+        int rauchig, int suesse, int wuerze, int fruchtig,
+        QString brennerei, QString herkunft, int alter, float alkoholgehalt, QString destillationsDatum,
+                       QString bottleDatum, QString fassTyp, QString region, int bewertung,
+                       int fuellStand, QString geschmacksrichtung, QString beschreibung, QString flaschennummer) :
         Spirituose (brennerei, herkunft, alter, alkoholgehalt, destillationsDatum, bottleDatum, fassTyp, region, bewertung, fuellStand,
                     geschmacksrichtung, beschreibung, flaschennummer),
         abfuellung{abfuellung}, name{name}, melasse{melasse}, zuckerrohr{zuckerrohr}, farbstoff{farbstoff}, singleBarrel{singleBarel}, preisLeistung{preisLeistung},
@@ -52,33 +54,40 @@ public:
     bool getSingleBarrel() const {return singleBarrel;}
     void setSingleBarrel(bool singleBarrel) {this->singleBarrel = singleBarrel;}
 
-    unsigned int getPreisLeistung() const {return preisLeistung;}
-    void setPreisLeistung(unsigned int preisLeistung) {this->preisLeistung = preisLeistung;}
+    int getPreisLeistung() const {return preisLeistung;}
+    void setPreisLeistung(int preisLeistung) {this->preisLeistung = preisLeistung;}
 
     QString getName() const {return name;}
     void setName(QString name) {this->name = name;}
 
     //Blume
-    unsigned int getRauchig() const {return rauchig;}
-    void setRauchig(unsigned int rauchig) {this->rauchig = rauchig;}
+    int getRauchig() const {return rauchig;}
+    void setRauchig(int rauchig) {this->rauchig = rauchig;}
 
-    unsigned int getSuesse() const {return suesse;}
-    void setSuesse(unsigned int suesse) {this->suesse = suesse;}
+    int getSuesse() const {return suesse;}
+    void setSuesse(int suesse) {this->suesse = suesse;}
 
-    unsigned int getWuerze() const {return wuerze;}
-    void setWuerze(unsigned int wuerze) {this->wuerze = wuerze;}
+    int getWuerze() const {return wuerze;}
+    void setWuerze(int wuerze) {this->wuerze = wuerze;}
 
-    unsigned int getFruchtig() const {return fruchtig;}
-    void setFruchtig(unsigned int fruchtig) {this->fruchtig = fruchtig;}
+    int getFruchtig() const {return fruchtig;}
+    void setFruchtig(int fruchtig) {this->fruchtig = fruchtig;}
 
     //Reihenfolge
-    unsigned int getRReihenfolge() const {return rReihenfolge;}
-    void setRReihenfolge(unsigned int rReihenfolge) {this->rReihenfolge = rReihenfolge;}
+    int getRReihenfolge() const {return rReihenfolge;}
+    void setRReihenfolge(int rReihenfolge) {this->rReihenfolge = rReihenfolge;}
+
+
+
 
     //========== QJson ==========
     //Hier das schreiben und lesen von json einfügen ( read and write )
-    void readJ(const QJsonObject &json);
-    void writeJ (QJsonObject &json) const;
+    void convertFromJsonValues (const QJsonObject &json);
+    void convertFromJsonObject (const QJsonObject &json);
+
+    void convertToJsonValues (QJsonObject &json) const;
+    void convertToJsonObject (QJsonObject &json) const;
+
 
 
 private:
@@ -91,14 +100,14 @@ private:
     bool zuckerrohr;
     bool farbstoff;
     bool singleBarrel;
-    unsigned int preisLeistung;
+    int preisLeistung;
 
-    unsigned int rauchig;
-    unsigned int suesse;
-    unsigned int wuerze;
-    unsigned int fruchtig;
+    int rauchig;
+    int suesse;
+    int wuerze;
+    int fruchtig;
 
-    unsigned int rReihenfolge;
+    int rReihenfolge;
 };
 
 #endif // RUM_H

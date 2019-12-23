@@ -26,9 +26,9 @@ public:
     */
 
     //Konstruktor mit allen optionalen
-    Spirituose(QString brennerei, QString herkunft, unsigned int alter, float alkoholgehalt, QString destillationsDatum,
-               QString bottleDatum, QString fassTyp, QString region, unsigned int bewertung,
-               unsigned int fuellStand, QString geschmacksrichtung, QString beschreibung, QString flaschennummer) :
+    Spirituose(QString brennerei, QString herkunft, int alter, float alkoholgehalt, QString destillationsDatum,
+               QString bottleDatum, QString fassTyp, QString region, int bewertung,
+               int fuellStand, QString geschmacksrichtung, QString beschreibung, QString flaschennummer) :
         brennerei{brennerei}, herkunft{herkunft}, alter{alter}, alkoholgehalt{alkoholgehalt}, destillationsDatum{destillationsDatum},
         bottleDatum{bottleDatum}, fassTyp{fassTyp}, region{region}, bewertung{bewertung}, fuellStand{fuellStand},
          geschmacksrichtung {geschmacksrichtung}, beschreibung{beschreibung}, flaschennummer{flaschennummer}
@@ -70,11 +70,11 @@ public:
     QString getRegion() const {return region;}
     void setRegion(QString region) {this->region = region;}
 
-    unsigned int getBewertung() const {return bewertung;}
-    void setBewertung(unsigned int bewertung) {this->bewertung = bewertung;}
+    int getBewertung() const {return bewertung;}
+    void setBewertung(int bewertung) {this->bewertung = bewertung;}
 
-    unsigned int getFuellStand() const {return fuellStand;}
-    void setFuellStand(unsigned int fuellStand) {this->fuellStand = fuellStand;}
+   int getFuellStand() const {return fuellStand;}
+    void setFuellStand(int fuellStand) {this->fuellStand = fuellStand;}
 
     //optionale Felder
 
@@ -89,11 +89,11 @@ public:
 
 
     //Für Rum Optional
-    unsigned int getAlter() const {return alter;}
-    void setAlter(unsigned int alter) {this->alter = alter;}
+    int getAlter() const {return alter;}
+    void setAlter(int alter) {this->alter = alter;}
 
     QString getDestillationsDatum() const {return  destillationsDatum;}
-    void setDestillationsDAtum (QString destillationsDatum) {this->destillationsDatum = destillationsDatum;}
+    void setDestillationsDatum (QString destillationsDatum) {this->destillationsDatum = destillationsDatum;}
 
     QString getBottleDatum() const {return bottleDatum;}
     void setBottleDatum(QString bottleDatum) {this->bottleDatum = bottleDatum;}
@@ -106,15 +106,15 @@ protected:
 
     QString brennerei;
     QString herkunft;
-    unsigned int alter;
+    int alter;
     float alkoholgehalt;
     QString destillationsDatum;   //jjjjmmdd  whisky
     QString bottleDatum;  //whisky
     QString fassTyp;
 
     QString region;
-    unsigned int bewertung;
-    unsigned int fuellStand;
+    int bewertung;
+    int fuellStand;
 
     //std::string name;   //whisky hat doch kein Name
 
@@ -122,7 +122,7 @@ protected:
 
     QString geschmacksrichtung;
     QString beschreibung;
-    QString flaschennummer;
+    QString flaschennummer; //zb: 10/203
 
 };
 

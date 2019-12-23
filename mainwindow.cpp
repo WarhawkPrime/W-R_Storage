@@ -9,19 +9,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     storing = new Storing;  //delete im Destruktor vorhanden
 
-    ui->WhiskyTabelle->setRowCount(storing->getAllOwnedSpirituoseSize());
+    //gespeicherte Daten einlesen
+    QString filename = "ownedW.json";
+    storing->readOwnedWhiskyFromFile(filename);
+    QMessageBox::information(this, "mainwindow", QString::number(storing->getAllOwnedWhiskySize()),  QMessageBox::Ok);
+
+
+    ui->WhiskyTabelle->setRowCount(storing->getAllOwnedWhiskySize() );
     ui->WhiskyTabelle->setColumnCount(2);
     ui->WhiskyTabelle->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->WhiskyTabelle->setWindowOpacity(400);
 
-    ui->RumTabelle->setRowCount(storing->getAllOwnedSpirituoseSize());
+    ui->RumTabelle->setRowCount(storing->getAllOwnedRumSize() );
     ui->RumTabelle->setColumnCount(2);
     ui->RumTabelle->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-
-
-    //geht bisher nur wenn alle Felder ausfefüllt sind
-    storing->readAllFiles();
 
     //updated der Tabellen
     for(int i {0}; i < storing->getAllOwnedWhiskySize();  i++ ) {
@@ -69,6 +70,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionProgramm_beenden_triggered()
 {
+    QString filename = "ownedW.json";
+    this->storing->saveOwnedWhiskyToFile(filename);
     exit(0);
 }
 

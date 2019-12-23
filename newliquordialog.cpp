@@ -190,8 +190,6 @@ void NewLiquorDialog::on_bestaetigen_clicked()
         }
     }
 
-    QMessageBox::information(this, "größe von vector", QString::number(storing->getAllOwnedWhiskySize()), QMessageBox::Ok);
-    emit tableChangedTest();
     this->close();
 }
 

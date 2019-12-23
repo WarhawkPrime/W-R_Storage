@@ -25,13 +25,13 @@ Rum* Storing::getRumByIndex(int index) {
 
 
 
-Whisky* Storing::createNewOwnedWhisky(QString brennerei, QString herkunft, unsigned int alter,
+Whisky* Storing::createNewOwnedWhisky(QString brennerei, QString herkunft, int alter,
                                  float alkoholgehalt, QString destillationsDatum, QString bottleDatum,
-                                 QString fassTyp, QString region, unsigned int bewertung, unsigned int fuellStand,
+                                 QString fassTyp, QString region, int bewertung, int fuellStand,
                                  QString geschmacksrichtung, QString beschreibung,
                                  QString flaschennummer, QString abfueller,
-                                 unsigned int torfig, unsigned int fruchtig, unsigned int leicht, unsigned int gehaltvoll,
-                                 unsigned int weich, QString smwsCode, QString art) {
+                                 int torfig, int fruchtig, int leicht, int gehaltvoll,
+                                 int weich, QString smwsCode, QString art) {
 
     Whisky* whisky = new Whisky(abfueller, torfig, fruchtig, leicht, gehaltvoll, weich, smwsCode, brennerei, herkunft, alter,
                                 alkoholgehalt, destillationsDatum, bottleDatum, fassTyp, region, bewertung, fuellStand,
@@ -45,12 +45,12 @@ Whisky* Storing::createNewOwnedWhisky(QString brennerei, QString herkunft, unsig
 }
 
 
-Rum* Storing::createNewOwnedRum(QString brennerei, QString herkunft, unsigned int alter, float alkoholgehalt,
-                           QString destillationsDatum, QString bottleDatum, QString fassTyp, QString region, unsigned int bewertung,
-                           unsigned int fuellStand, QString name, QString geschmacksrichtung, QString beschreibung,
+Rum* Storing::createNewOwnedRum(QString brennerei, QString herkunft, int alter, float alkoholgehalt,
+                           QString destillationsDatum, QString bottleDatum, QString fassTyp, QString region, int bewertung,
+                           int fuellStand, QString name, QString geschmacksrichtung, QString beschreibung,
                            QString flaschennummer, QString abfuellung, bool melasse, bool zuckerrohr, bool farbstoff,
-                           bool singleBarel, unsigned int preisLeistung, unsigned int rauchig, unsigned int suesse, unsigned int wuerze,
-                           unsigned int fruchtig) {
+                           bool singleBarel, int preisLeistung, int rauchig, int suesse, int wuerze,
+                           int fruchtig) {
 
 
     Rum* rum = new Rum(abfuellung, name, melasse, zuckerrohr, farbstoff, singleBarel, preisLeistung, rauchig, suesse, wuerze, fruchtig, brennerei,
@@ -64,13 +64,13 @@ Rum* Storing::createNewOwnedRum(QString brennerei, QString herkunft, unsigned in
     return rum;
 }
 
-Whisky* Storing::createNewTestedWhisky(QString brennerei, QString herkunft, unsigned int alter,
+Whisky* Storing::createNewTestedWhisky(QString brennerei, QString herkunft, int alter,
                                  float alkoholgehalt, QString destillationsDatum, QString bottleDatum,
-                                 QString fassTyp, QString region, unsigned int bewertung, unsigned int fuellStand,
+                                 QString fassTyp, QString region, int bewertung, int fuellStand,
                                  QString geschmacksrichtung, QString beschreibung,
                                  QString flaschennummer, QString abfueller,
-                                 unsigned int torfig, unsigned int fruchtig, unsigned int leicht, unsigned int gehaltvoll,
-                                 unsigned int weich, QString smwsCode, QString art) {
+                                 int torfig, int fruchtig, int leicht, int gehaltvoll,
+                                 int weich, QString smwsCode, QString art) {
 
     Whisky* whisky = new Whisky(abfueller, torfig, fruchtig, leicht, gehaltvoll, weich, smwsCode, brennerei, herkunft, alter,
                                 alkoholgehalt, destillationsDatum, bottleDatum, fassTyp, region, bewertung, fuellStand,
@@ -84,12 +84,12 @@ Whisky* Storing::createNewTestedWhisky(QString brennerei, QString herkunft, unsi
 }
 
 
-Rum* Storing::createNewTestedRum(QString brennerei, QString herkunft, unsigned int alter, float alkoholgehalt,
-                           QString destillationsDatum, QString bottleDatum, QString fassTyp, QString region, unsigned int bewertung,
-                           unsigned int fuellStand, QString name, QString geschmacksrichtung, QString beschreibung,
+Rum* Storing::createNewTestedRum(QString brennerei, QString herkunft, int alter, float alkoholgehalt,
+                           QString destillationsDatum, QString bottleDatum, QString fassTyp, QString region, int bewertung,
+                           int fuellStand, QString name, QString geschmacksrichtung, QString beschreibung,
                            QString flaschennummer, QString abfuellung, bool melasse, bool zuckerrohr, bool farbstoff,
-                           bool singleBarel, unsigned int preisLeistung, unsigned int rauchig, unsigned int suesse, unsigned int wuerze,
-                           unsigned int fruchtig) {
+                           bool singleBarel, int preisLeistung, int rauchig, int suesse, int wuerze,
+                           int fruchtig) {
 
 
     Rum* rum = new Rum(abfuellung, name, melasse, zuckerrohr, farbstoff, singleBarel, preisLeistung, rauchig, suesse, wuerze, fruchtig, brennerei,
@@ -102,3 +102,92 @@ Rum* Storing::createNewTestedRum(QString brennerei, QString herkunft, unsigned i
 
     return rum;
 }
+
+
+
+
+
+//============================== write to file ==============================
+
+void Storing::storeAllOwnedWhiskyInArray(QJsonObject &json) const {
+    QJsonArray ownedWArray;
+
+    for(Whisky* whisky : allOwnedWhisky) {
+        QJsonObject allOW;
+        whisky->convertToJsonObject(allOW);
+        ownedWArray.append(allOW);
+    }
+
+    json["AllOwnedWhiskyArray"] = ownedWArray;
+
+}
+
+void Storing::saveOwnedWhiskyToFile(QString filename) {
+
+    QFile saveFileJ(filename);
+
+    if(!saveFileJ.open(QIODevice::WriteOnly)) {
+        qWarning("Task failed succesfully");
+    }
+
+    QJsonObject allOW;
+    this->storeAllOwnedWhiskyInArray(allOW);
+
+    QJsonDocument allOWDoc(allOW);
+    saveFileJ.write(allOWDoc.toJson());
+}
+
+//============================== read from file ==============================
+
+
+
+void Storing::getAllOwnedWhiskyFromArray(const QJsonObject &json) {
+
+    this->setWhiskyCounter(0);
+
+    if (json.contains("AllOwnedWhiskyArray") && json["AllOwnedWhiskyArray"].isArray()) {
+        //neues array erstellen und darin den inhalt aus dem json arary kopieren
+        QJsonArray levelArray = json["AllOwnedWhiskyArray"].toArray();
+        //vector clearen
+        this->getAllOwnedWhisky().clear();
+        //größe des vectors reservieren
+        this->getAllOwnedWhisky().reserve(levelArray.size());
+        //inhalt des temp arrays wird pro index einem object übergeben
+        for (int levelIndex = 0; levelIndex < levelArray.size(); ++levelIndex) {
+            //und zwar hier
+            QJsonObject whiskyObject = levelArray[levelIndex].toObject();
+            //level ertellen
+            Whisky* whisky = new Whisky();
+            whisky->setWReihenfolge(this->getWhiskyCounter());
+            //jedem level wird jezt der Inhalt des objects übergeben
+            whisky->convertFromJsonObject(whiskyObject);
+            //die einzelnen levels werden zu dem vector hinzugefügt
+            allOwnedWhisky.push_back(whisky);
+            this->setWhiskyCounter(this->getWhiskyCounter() + 1);
+        }
+    }
+
+    this->setWhiskyCounter(0);
+
+}
+
+void Storing::readOwnedWhiskyFromFile(QString filename) {
+    QFile loadFile(filename);
+
+    if(!loadFile.open(QIODevice::ReadOnly)) {
+        qWarning("Task failed succesfuly");
+    }
+
+    QByteArray saveData = loadFile.readAll();
+    QJsonDocument loadDocJ(QJsonDocument::fromJson(saveData));
+
+    this->getAllOwnedWhiskyFromArray(loadDocJ.object());
+}
+
+
+
+
+
+
+
+

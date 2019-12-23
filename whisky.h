@@ -11,11 +11,13 @@ public:
     //========== Constructors ==========
     Whisky() {
 
+        type = 'W';
+
     }
 
-    Whisky(QString abfueller, unsigned int torfig, unsigned int fruchtig, unsigned int leicht, unsigned int gehaltvoll, unsigned int weich, QString smwsCode,
-           QString brennerei, QString herkunft, unsigned int alter, float alkoholgehalt, QString destillationsDatum,
-           QString bottleDatum, QString fassTyp, QString region, unsigned int bewertung,
+    Whisky(QString abfueller, int torfig, int fruchtig, int leicht, int gehaltvoll, int weich, QString smwsCode,
+           QString brennerei, QString herkunft, int alter, float alkoholgehalt, QString destillationsDatum,
+           QString bottleDatum, QString fassTyp, QString region, int bewertung,
            unsigned int fuellStand, QString geschmacksrichtung, QString beschreibung, QString flaschennummer, QString art) :
         Spirituose (brennerei, herkunft, alter, alkoholgehalt, destillationsDatum, bottleDatum, fassTyp, region, bewertung, fuellStand,
                     geschmacksrichtung, beschreibung, flaschennummer),
@@ -36,20 +38,20 @@ public:
     QString getAbfueller() const {return abfueller;}
     void setAbfueller(QString abfueller) {this->abfueller = abfueller;}
 
-    unsigned int getTorfig() const {return torfig;}
-    void setTorfig(unsigned int torfig) {this->torfig = torfig;}
+    int getTorfig() const {return torfig;}
+    void setTorfig(int torfig) {this->torfig = torfig;}
 
-    unsigned int getFruchtig() const {return fruchtig;}
-    void setFruchtig(unsigned int fruchtig) {this->fruchtig = fruchtig;}
+    int getFruchtig() const {return fruchtig;}
+    void setFruchtig(int fruchtig) {this->fruchtig = fruchtig;}
 
-    unsigned int getLeicht() const {return leicht;}
-    void setLeicht(unsigned int leicht) {this->leicht = leicht;}
+    int getLeicht() const {return leicht;}
+    void setLeicht(int leicht) {this->leicht = leicht;}
 
-    unsigned int getGehaltvoll() const {return gehaltvoll;}
-    void setGehaltvoll(unsigned int gehaltvoll) {this->gehaltvoll = gehaltvoll;}
+    int getGehaltvoll() const {return gehaltvoll;}
+    void setGehaltvoll(int gehaltvoll) {this->gehaltvoll = gehaltvoll;}
 
-    unsigned int getWeich() const {return weich;}
-    void setWeich(unsigned int weich) {this->weich = weich;}
+    int getWeich() const {return weich;}
+    void setWeich(int weich) {this->weich = weich;}
 
     QString getSmwsCode() const {return smwsCode;}
     void setSmwsCode(QString smwsCode) {this->smwsCode = smwsCode;}
@@ -58,16 +60,19 @@ public:
     void setArt(QString art) {this->art = art;}
 
     //Reihenfolge
-    unsigned int getWReihenfolge() const {return wReihenfolge;}
-    void setWReihenfolge(unsigned int wReihenfolge) {this->wReihenfolge = wReihenfolge;}
+    int getWReihenfolge() const {return wReihenfolge;}
+    void setWReihenfolge(int wReihenfolge) {this->wReihenfolge = wReihenfolge;}
 
 
 
 
     //========== QJson ==========
     //Hier das schreiben und lesen von json einfügen ( read and write )
-    void readJ(const QJsonObject &json);
-    void writeJ (QJsonObject &json) const;
+    void convertFromJsonValues (const QJsonObject &json);
+    void convertFromJsonObject (const QJsonObject &json);
+
+    void convertToJsonValues (QJsonObject &json) const;
+    void convertToJsonObject (QJsonObject &json) const;
 
 
 private:
@@ -75,11 +80,11 @@ private:
 
     QString abfueller;
 
-    unsigned int torfig;
-    unsigned int fruchtig;
-    unsigned int leicht;
-    unsigned int gehaltvoll;
-    unsigned int weich;
+    int torfig;
+    int fruchtig;
+    int leicht;
+    int gehaltvoll;
+    int weich;
 
     //optional
     QString smwsCode;
@@ -88,7 +93,7 @@ private:
 
 
     //für die Reihenfolge des
-    unsigned int wReihenfolge;
+    int wReihenfolge;
 
 };
 
