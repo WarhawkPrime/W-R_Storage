@@ -116,7 +116,7 @@ public:
     void saveOwnedRumToFile(QString filename);
 
     void getAllOwnedRumFromArray(const QJsonObject &json);
-    void readOwnedRumFile(QString filename);
+    void readOwnedRumFromFile(QString filename);
 
 
 

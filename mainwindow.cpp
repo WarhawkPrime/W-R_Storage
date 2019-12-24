@@ -9,10 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     storing = new Storing;  //delete im Destruktor vorhanden
 
+    ui->lineEdit->setVisible(true);
+
+
+
+
     //gespeicherte Daten einlesen
-    QString filename = "ownedW.json";
-    storing->readOwnedWhiskyFromFile(filename);
-    QMessageBox::information(this, "mainwindow", QString::number(storing->getAllOwnedWhiskySize()),  QMessageBox::Ok);
+    QString filenameW = "ownedW.json";
+    QString filenameR = "ownedR.json";
+
+    storing->readOwnedWhiskyFromFile(filenameW);
+    storing->readOwnedRumFromFile(filenameR);
 
 
     ui->WhiskyTabelle->setRowCount(storing->getAllOwnedWhiskySize() );
@@ -70,8 +77,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionProgramm_beenden_triggered()
 {
-    QString filename = "ownedW.json";
-    this->storing->saveOwnedWhiskyToFile(filename);
+    QString filenameW = "ownedW.json";
+    QString filenameR = "ownedR.json";
+
+    this->storing->saveOwnedWhiskyToFile(filenameW);
+    this->storing->saveOwnedRumToFile(filenameR);
     exit(0);
 }
 
@@ -86,6 +96,8 @@ void MainWindow::on_WhiskyTabelle_cellClicked(int row, int column)
     //std::string datumN = travelagency->getBooking(bookingIndex)->getBookingFromDate();
 
     int index = ui->WhiskyTabelle->currentRow();
+    ui->lineEdit->setText(storing->getWhiskyByIndex(index)->getBrennerei());
+
 
     QMessageBox::information(this, "mainwindow", storing->getWhiskyByIndex(index)->getAbfueller()  ,  QMessageBox::Ok);
 
@@ -93,6 +105,13 @@ void MainWindow::on_WhiskyTabelle_cellClicked(int row, int column)
     //sortieren: art, hersteller/brennerei/hersteller, melasse,zuckerrohr
     //sortieren (nach starken geschmacksrichtungen)
 
+
+}
+
+void MainWindow::on_RumTabelle_cellDoubleClicked(int row, int column)
+{
+    int index = ui->RumTabelle->currentRow();
+    ui->lineEdit->setText(storing->getRumByIndex(index)->getBrennerei());
 
 }
 
@@ -128,3 +147,5 @@ void MainWindow::on_actionNeuen_Whisky_hinzuf_gen_triggered()
     }
 
 }
+
+

@@ -107,7 +107,7 @@ Rum* Storing::createNewTestedRum(QString brennerei, QString herkunft, int alter,
 
 
 
-//============================== write to file ==============================
+//============================== write to file ownWhisky ==============================
 
 void Storing::storeAllOwnedWhiskyInArray(QJsonObject &json) const {
     QJsonArray ownedWArray;
@@ -137,7 +137,7 @@ void Storing::saveOwnedWhiskyToFile(QString filename) {
     saveFileJ.write(allOWDoc.toJson());
 }
 
-//============================== read from file ==============================
+//============================== read from file ownWhisky ==============================
 
 
 
@@ -184,7 +184,82 @@ void Storing::readOwnedWhiskyFromFile(QString filename) {
     this->getAllOwnedWhiskyFromArray(loadDocJ.object());
 }
 
+//============================== write to file ownRum ==============================
 
+void Storing::storeAllOwnedRumInArray(QJsonObject &json) const {
+    QJsonArray ownedRArray;
+
+    for(Rum* rum : allOwnedRum) {
+        QJsonObject allOW;
+        rum->convertToJsonObject(allOW);
+        ownedRArray.append(allOW);
+    }
+
+    json["AllOwnedRumArray"] = ownedRArray;
+
+}
+
+void Storing::saveOwnedRumToFile(QString filename) {
+
+    QFile saveFileJ(filename);
+
+    if(!saveFileJ.open(QIODevice::WriteOnly)) {
+        qWarning("Task failed succesfully");
+    }
+
+    QJsonObject allOW;
+    this->storeAllOwnedRumInArray(allOW);
+
+    QJsonDocument allOWDoc(allOW);
+    saveFileJ.write(allOWDoc.toJson());
+}
+
+//============================== read from file ownRum ==============================
+
+
+
+void Storing::getAllOwnedRumFromArray(const QJsonObject &json) {
+
+    this->setRumCounter(0);
+
+    if (json.contains("AllOwnedRumArray") && json["AllOwnedRumArray"].isArray()) {
+        //neues array erstellen und darin den inhalt aus dem json arary kopieren
+        QJsonArray levelArray = json["AllOwnedRumArray"].toArray();
+        //vector clearen
+        this->getAllOwnedRum().clear();
+        //größe des vectors reservieren
+        this->getAllOwnedRum().reserve(levelArray.size());
+        //inhalt des temp arrays wird pro index einem object übergeben
+        for (int levelIndex = 0; levelIndex < levelArray.size(); ++levelIndex) {
+            //und zwar hier
+            QJsonObject rumObject = levelArray[levelIndex].toObject();
+            //level ertellen
+            Rum* rum = new Rum();
+            rum->setRReihenfolge(this->getRumCounter());
+            //jedem level wird jezt der Inhalt des objects übergeben
+            rum->convertFromJsonObject(rumObject);
+            //die einzelnen levels werden zu dem vector hinzugefügt
+            allOwnedRum.push_back(rum);
+            this->setRumCounter(this->getRumCounter() + 1);
+        }
+    }
+
+    this->setRumCounter(0);
+
+}
+
+void Storing::readOwnedRumFromFile(QString filename) {
+    QFile loadFile(filename);
+
+    if(!loadFile.open(QIODevice::ReadOnly)) {
+        qWarning("Task failed succesfuly");
+    }
+
+    QByteArray saveData = loadFile.readAll();
+    QJsonDocument loadDocJ(QJsonDocument::fromJson(saveData));
+
+    this->getAllOwnedRumFromArray(loadDocJ.object());
+}
 
 
 

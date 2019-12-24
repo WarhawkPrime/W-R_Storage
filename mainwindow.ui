@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>869</width>
-    <height>623</height>
+    <width>1948</width>
+    <height>992</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTableWidget" name="WhiskyTabelle">
@@ -19,14 +22,20 @@
      <rect>
       <x>0</x>
       <y>30</y>
-      <width>301</width>
-      <height>550</height>
+      <width>350</width>
+      <height>891</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="font">
      <font>
       <family>Arial Black</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -47,7 +56,7 @@
      <number>28</number>
     </attribute>
     <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>150</number>
+     <number>174</number>
     </attribute>
     <attribute name="verticalHeaderMinimumSectionSize">
      <number>22</number>
@@ -62,7 +71,7 @@
      <property name="font">
       <font>
        <family>Arial Black</family>
-       <pointsize>10</pointsize>
+       <pointsize>12</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -75,7 +84,7 @@
      <property name="font">
       <font>
        <family>Arial Black</family>
-       <pointsize>10</pointsize>
+       <pointsize>12</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -85,19 +94,28 @@
    <widget class="QTableWidget" name="RumTabelle">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>1570</x>
       <y>30</y>
-      <width>301</width>
-      <height>550</height>
+      <width>350</width>
+      <height>891</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="font">
      <font>
       <family>Arial Black</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAsNeeded</enum>
@@ -109,7 +127,7 @@
      <set>QAbstractItemView::SelectedClicked</set>
     </property>
     <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>150</number>
+     <number>174</number>
     </attribute>
     <column>
      <property name="text">
@@ -118,7 +136,7 @@
      <property name="font">
       <font>
        <family>Arial Black</family>
-       <pointsize>10</pointsize>
+       <pointsize>12</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -131,7 +149,7 @@
      <property name="font">
       <font>
        <family>Arial Black</family>
-       <pointsize>10</pointsize>
+       <pointsize>12</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -141,16 +159,16 @@
    <widget class="QLabel" name="VarLabel1_9">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>90</x>
       <y>0</y>
-      <width>171</width>
+      <width>181</width>
       <height>29</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Arial Black</family>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -162,16 +180,16 @@
    <widget class="QLabel" name="VarLabel1_10">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>1670</x>
       <y>0</y>
-      <width>131</width>
+      <width>151</width>
       <height>29</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Arial Black</family>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -180,20 +198,59 @@
      <string>Rum Bestand</string>
     </property>
    </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>30</y>
+      <width>371</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Arial Black</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Brennerei *</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="font">
+        <font>
+         <family>Arial Black</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>869</width>
-     <height>24</height>
+     <width>1948</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Arial Black</family>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -234,7 +291,7 @@
    <property name="font">
     <font>
      <family>Arial Black</family>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -247,7 +304,7 @@
    <property name="font">
     <font>
      <family>Arial Black</family>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -265,7 +322,7 @@
    <property name="font">
     <font>
      <family>Arial Black</family>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -278,7 +335,7 @@
    <property name="font">
     <font>
      <family>Arial Black</family>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -291,7 +348,7 @@
    <property name="font">
     <font>
      <family>Arial Black</family>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>

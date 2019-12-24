@@ -28,6 +28,8 @@ private slots:
 
     void updateTable();
 
+    void on_RumTabelle_cellDoubleClicked(int row, int column);
+
 private:
     Ui::MainWindow *ui;
     Storing* storing;
