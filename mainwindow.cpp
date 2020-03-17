@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -11,15 +13,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->lineEdit->setVisible(true);
 
-
-
-
     //gespeicherte Daten einlesen
     QString filenameW = "ownedW.json";
     QString filenameR = "ownedR.json";
+    QString tfilenameW = "testedW.json";
+    QString tfilenameR = "testedR.json";
+
 
     storing->readOwnedWhiskyFromFile(filenameW);
     storing->readOwnedRumFromFile(filenameR);
+    storing->readTestedWhiskyFromFile(tfilenameW);
+    storing->readTestedRumFromFile(tfilenameR);
 
 
     ui->WhiskyTabelle->setRowCount(storing->getAllOwnedWhiskySize() );
@@ -33,39 +37,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //updated der Tabellen
     for(int i {0}; i < storing->getAllOwnedWhiskySize();  i++ ) {
-        ui->WhiskyTabelle->setItem(i, 0, new QTableWidgetItem((storing->getWhiskyByIndex(i)->getAbfueller())));
+        ui->WhiskyTabelle->setItem(i, 0, new QTableWidgetItem((storing->getOWhiskyByIndex(i)->getBrennerei())));
 
-        ui->WhiskyTabelle->setItem(i, 1, new QTableWidgetItem((storing->getWhiskyByIndex(i)->getBeschreibung())));
+        ui->WhiskyTabelle->setItem(i, 1, new QTableWidgetItem((storing->getOWhiskyByIndex(i)->getHerkunft())));
     }
     for (int i {0}; i < storing->getAllOwnedRumSize(); i ++) {
-        ui->RumTabelle->setItem(i, 0, new QTableWidgetItem((storing->getRumByIndex(i)->getName())));
+        ui->RumTabelle->setItem(i, 0, new QTableWidgetItem((storing->getORumByIndex(i)->getName())));
 
-        ui->RumTabelle->setItem(i, 1, new QTableWidgetItem((storing->getRumByIndex(i)->getBeschreibung())));
+        ui->RumTabelle->setItem(i, 1, new QTableWidgetItem((storing->getORumByIndex(i)->getHerkunft())));
     }
-
-}
-
-void MainWindow::updateTable() {
-    std::cout << "signal bekommen" << std::endl;
-    QMessageBox::information(this, "mainwindow", "signal bekommen",  QMessageBox::Ok);
-    QMessageBox::information(this, "mainwindow", QString::number(storing->getAllOwnedWhiskySize()),  QMessageBox::Ok);
-
-    //updated der Tabellen
-    for(int i {0}; i < storing->getAllOwnedWhiskySize();  i++ ) {
-        ui->WhiskyTabelle->setItem(i, 0, new QTableWidgetItem((storing->getWhiskyByIndex(i)->getAbfueller())));
-
-        ui->WhiskyTabelle->setItem(i, 1, new QTableWidgetItem((storing->getWhiskyByIndex(i)->getBeschreibung())));
-    }
-    for (int i {0}; i < storing->getAllOwnedRumSize(); i ++) {
-        ui->RumTabelle->setItem(i, 0, new QTableWidgetItem((storing->getRumByIndex(i)->getName())));
-
-        ui->RumTabelle->setItem(i, 1, new QTableWidgetItem((storing->getRumByIndex(i)->getBeschreibung())));
-    }
-
-    ui->WhiskyTabelle->update();
-    ui->WhiskyTabelle->repaint();
-    repaint();
-
 
 }
 
@@ -75,13 +55,43 @@ MainWindow::~MainWindow()
     delete storing;
 }
 
+/*
+    std::cout << "signal bekommen" << std::endl;
+    QMessageBox::information(this, "mainwindow", "signal bekommen",  QMessageBox::Ok);
+    QMessageBox::information(this, "mainwindow", QString::number(storing->getAllOwnedWhiskySize()),  QMessageBox::Ok);
+
+    //updated der Tabellen
+    for(int i {0}; i < storing->getAllOwnedWhiskySize();  i++ ) {
+        ui->WhiskyTabelle->setItem(i, 0, new QTableWidgetItem((storing->getWhiskyByIndex(i)->getBrennerei())));
+
+        ui->WhiskyTabelle->setItem(i, 1, new QTableWidgetItem((storing->getWhiskyByIndex(i)->getHerkunft())));
+    }
+    for (int i {0}; i < storing->getAllOwnedRumSize(); i ++) {
+        ui->RumTabelle->setItem(i, 0, new QTableWidgetItem((storing->getRumByIndex(i)->getName())));
+
+        ui->RumTabelle->setItem(i, 1, new QTableWidgetItem((storing->getRumByIndex(i)->getHerkunft())));
+    }
+
+    ui->WhiskyTabelle->update();
+    ui->WhiskyTabelle->repaint();
+    repaint();
+
+}
+*/
+
+
+
 void MainWindow::on_actionProgramm_beenden_triggered()
 {
     QString filenameW = "ownedW.json";
     QString filenameR = "ownedR.json";
+    QString tfilenameR = "testedR.json";
+    QString tfilenameW = "testedW.json";
 
     this->storing->saveOwnedWhiskyToFile(filenameW);
     this->storing->saveOwnedRumToFile(filenameR);
+    this->storing->saveTestedWhiskyToFile(tfilenameW);
+    this->storing->saveTestedRumToFile(tfilenameR);
     exit(0);
 }
 
@@ -96,32 +106,40 @@ void MainWindow::on_WhiskyTabelle_cellClicked(int row, int column)
     //std::string datumN = travelagency->getBooking(bookingIndex)->getBookingFromDate();
 
     int index = ui->WhiskyTabelle->currentRow();
-    ui->lineEdit->setText(storing->getWhiskyByIndex(index)->getBrennerei());
 
-
-    QMessageBox::information(this, "mainwindow", storing->getWhiskyByIndex(index)->getAbfueller()  ,  QMessageBox::Ok);
+    //*
+    ui->label->setText("Brennerei");
+    ui->lineEdit->setText(storing->getOWhiskyByIndex(index)->getBrennerei());
+    ui->label_2->setText("Herkunft");
+    ui->lineEdit_2->setText(storing->getOWhiskyByIndex(index)->getHerkunft());
+    ui->label_3->setText("Region");
+    ui->lineEdit_3->setText(storing->getOWhiskyByIndex(index)->getRegion());
 
     //sortieren: brennerei!!!, alter, whisky art,
     //sortieren: art, hersteller/brennerei/hersteller, melasse,zuckerrohr
     //sortieren (nach starken geschmacksrichtungen)
-
-
 }
 
 void MainWindow::on_RumTabelle_cellDoubleClicked(int row, int column)
 {
     int index = ui->RumTabelle->currentRow();
-    ui->lineEdit->setText(storing->getRumByIndex(index)->getBrennerei());
+
+    ui->label->setText("Name");
+    ui->lineEdit->setText(storing->getORumByIndex(index)->getBrennerei());
+    ui->label_2->setText("Herkunft");
+    ui->lineEdit_2->setText(storing->getORumByIndex(index)->getHerkunft());
+    ui->label_3->setText("Region");
+    ui->lineEdit_3->setText(storing->getORumByIndex(index)->getRegion());
 
 }
 
-void MainWindow::on_actionNeuen_Whisky_hinzuf_gen_triggered()
-{
+/*
     NewLiquorDialog* newLiquorDialog = new NewLiquorDialog(this, storing);
 
     //QObject::connect(newLiquorDialog, SIGNAL(tableChangedTest()), this, SLOT(updateTable()) );
 
-    newLiquorDialog->exec();
+    //newLiquorDialog->exec();
+    newLiquorDialog->showFullScreen();
 
     ui->WhiskyTabelle->setRowCount(storing->getAllOwnedWhiskySize() );
     ui->WhiskyTabelle->setColumnCount(2);
@@ -136,16 +154,27 @@ void MainWindow::on_actionNeuen_Whisky_hinzuf_gen_triggered()
 
     //updated der Tabellen
     for(int i {0}; i < storing->getAllOwnedWhiskySize();  i++ ) {
-        ui->WhiskyTabelle->setItem(i, 0, new QTableWidgetItem((storing->getWhiskyByIndex(i)->getAbfueller())));
+        ui->WhiskyTabelle->setItem(i, 0, new QTableWidgetItem((storing->getOWhiskyByIndex(i)->getBrennerei())));
 
-        ui->WhiskyTabelle->setItem(i, 1, new QTableWidgetItem((storing->getWhiskyByIndex(i)->getBeschreibung())));
+        ui->WhiskyTabelle->setItem(i, 1, new QTableWidgetItem((storing->getOWhiskyByIndex(i)->getHerkunft())));
     }
     for (int i {0}; i < storing->getAllOwnedRumSize(); i ++) {
-        ui->RumTabelle->setItem(i, 0, new QTableWidgetItem((storing->getRumByIndex(i)->getName())));
+        ui->RumTabelle->setItem(i, 0, new QTableWidgetItem((storing->getORumByIndex(i)->getName())));
 
-        ui->RumTabelle->setItem(i, 1, new QTableWidgetItem((storing->getRumByIndex(i)->getBeschreibung())));
+        ui->RumTabelle->setItem(i, 1, new QTableWidgetItem((storing->getORumByIndex(i)->getHerkunft())));
     }
 
 }
+*/
 
+void MainWindow::on_actionNeuen_Rum_triggered()
+{
+   newRumDialog = new NewRumDialog(this, storing);
+   newRumDialog->showFullScreen();
+}
 
+void MainWindow::on_actionNeuen_Whisky_triggered()
+{
+    newWhiskyDialog = new NewWhiskyDialog(this, storing);
+    newWhiskyDialog->showFullScreen();
+}

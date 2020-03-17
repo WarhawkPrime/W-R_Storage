@@ -28,9 +28,6 @@ private slots:
 
     void on_comboBox_activated(const QString &arg1);
 
-signals:
-    void tableChangedTest();
-
 private:
     Ui::NewLiquorDialog *ui;
     Storing* storing;

@@ -17,226 +17,250 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTableWidget" name="WhiskyTabelle">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>350</width>
-      <height>891</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Black</family>
-      <pointsize>12</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
-    </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustIgnored</enum>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::SelectedClicked</set>
-    </property>
-    <attribute name="horizontalHeaderMinimumSectionSize">
-     <number>28</number>
-    </attribute>
-    <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>174</number>
-    </attribute>
-    <attribute name="verticalHeaderMinimumSectionSize">
-     <number>22</number>
-    </attribute>
-    <attribute name="verticalHeaderDefaultSectionSize">
-     <number>30</number>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>Abfüller</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial Black</family>
-       <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Beschreibung</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial Black</family>
-       <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-   </widget>
-   <widget class="QTableWidget" name="RumTabelle">
-    <property name="geometry">
-     <rect>
-      <x>1570</x>
-      <y>30</y>
-      <width>350</width>
-      <height>891</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Black</family>
-      <pointsize>12</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::SelectedClicked</set>
-    </property>
-    <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>174</number>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>Name</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial Black</family>
-       <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Beschreibung</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial Black</family>
-       <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-   </widget>
-   <widget class="QLabel" name="VarLabel1_9">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>0</y>
-      <width>181</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Black</family>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Whisky Bestand</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="VarLabel1_10">
-    <property name="geometry">
-     <rect>
-      <x>1670</x>
-      <y>0</y>
-      <width>151</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Black</family>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Rum Bestand</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>30</y>
-      <width>371</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <family>Arial Black</family>
-         <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTableWidget" name="WhiskyTabelle">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>376</width>
+        <height>903</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial Black</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::SelectedClicked</set>
+      </property>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>180</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>190</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>22</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
+      </attribute>
+      <column>
        <property name="text">
-        <string>Brennerei *</string>
+        <string>Brennerei</string>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit">
        <property name="font">
         <font>
          <family>Arial Black</family>
-         <pointsize>10</pointsize>
+         <pointsize>14</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+      </column>
+      <column>
+       <property name="text">
+        <string>Herkunft</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial Black</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Arial Black</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Brennerei</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="font">
+         <font>
+          <family>Arial Black</family>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Arial Black</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Region</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="font">
+         <font>
+          <family>Arial Black</family>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Arial Black</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Herkunft</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="font">
+         <font>
+          <family>Arial Black</family>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="RumTabelle">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>361</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial Black</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::SelectedClicked</set>
+      </property>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>180</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>180</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Name</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial Black</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Herkunft</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial Black</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -267,13 +291,38 @@
     <property name="title">
      <string>Funktionen</string>
     </property>
-    <addaction name="actionDatei_einlesen"/>
-    <addaction name="actionAlle_Rum"/>
-    <addaction name="actionNeuen_Whisky_hinzuf_gen"/>
+    <addaction name="actionNeuen_Rum"/>
+    <addaction name="actionNeuen_Whisky"/>
     <addaction name="actionSpirituose_bearbeiten"/>
     <addaction name="actionProgramm_beenden"/>
    </widget>
+   <widget class="QMenu" name="menuSortierung">
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>Auswahl</string>
+    </property>
+    <addaction name="actionBestand"/>
+    <addaction name="actionGetestet"/>
+    <addaction name="actionAlle"/>
+   </widget>
+   <widget class="QMenu" name="menuSortierung_2">
+    <property name="title">
+     <string>Sortierung</string>
+    </property>
+    <addaction name="actionAlphabetisch"/>
+    <addaction name="actionBewertung_aufsteingend"/>
+    <addaction name="actionBewertung_absteigend"/>
+   </widget>
    <addaction name="menuDatei_einlesen"/>
+   <addaction name="menuSortierung"/>
+   <addaction name="menuSortierung_2"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -297,9 +346,9 @@
     </font>
    </property>
   </action>
-  <action name="actionNeuen_Whisky_hinzuf_gen">
+  <action name="actionNeuen_Rum">
    <property name="text">
-    <string>Neue Spirituose hinzufügen</string>
+    <string>Neuen Rum</string>
    </property>
    <property name="font">
     <font>
@@ -308,11 +357,6 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
-   </property>
-  </action>
-  <action name="actionNeuen_Rum_hinzuf_gen">
-   <property name="text">
-    <string>Neuen Rum hinzufügen</string>
    </property>
   </action>
   <action name="actionSpirituose_bearbeiten">
@@ -328,9 +372,24 @@
     </font>
    </property>
   </action>
-  <action name="actionDatei_einlesen">
+  <action name="actionBestand">
    <property name="text">
-    <string>Alle Whisky</string>
+    <string>Bestand</string>
+   </property>
+  </action>
+  <action name="actionGetestet">
+   <property name="text">
+    <string>Getestet</string>
+   </property>
+  </action>
+  <action name="actionAlle">
+   <property name="text">
+    <string>Alle</string>
+   </property>
+  </action>
+  <action name="actionAlphabetisch">
+   <property name="text">
+    <string>Alphabetisch</string>
    </property>
    <property name="font">
     <font>
@@ -341,9 +400,9 @@
     </font>
    </property>
   </action>
-  <action name="actionAlle_Rum">
+  <action name="actionBewertung_aufsteingend">
    <property name="text">
-    <string>Alle Rume</string>
+    <string>Bewertung aufsteingend</string>
    </property>
    <property name="font">
     <font>
@@ -354,9 +413,30 @@
     </font>
    </property>
   </action>
-  <action name="actionNeue_Bewertung_hinzuf_gen">
+  <action name="actionBewertung_absteigend">
    <property name="text">
-    <string>Neue Bewertung hinzufügen</string>
+    <string>Bewertung absteigend</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial Black</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionNeuen_Whisky">
+   <property name="text">
+    <string>Neuen Whisky</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial Black</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
   </action>
  </widget>

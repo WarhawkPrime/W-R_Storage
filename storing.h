@@ -32,8 +32,7 @@ class Storing
 {
 public:
     Storing() {
-        rumCounter = 0;
-        whiskyCounter = 0;
+
     }
 
     ~Storing()
@@ -65,11 +64,16 @@ public:
     }
 
 
+
     //========== Methodes ==========
     void readAllFiles();
-    Spirituose* getSpirituoseByIndex(int index);
-    Whisky* getWhiskyByIndex(int index);
-    Rum* getRumByIndex(int index);
+    //Spirituose* getSpirituoseByIndex(int index);
+
+    Whisky* getOWhiskyByIndex(int index);
+    Rum* getORumByIndex(int index);
+
+    Whisky* getTWhiskyByIndex(int index);
+    Rum* getTRumByIndex(int index);
 
 
     Whisky* createNewOwnedWhisky(QString brennerei, QString herkunft, int alter, float alkoholgehalt, QString destillationsDatum,
@@ -77,7 +81,8 @@ public:
                          int fuellStand, QString geschmacksrichtung, QString beschreibung,
                          QString flaschennummer,
                          QString abfueller, int torfig, int fruchtig, int leicht, int gehaltvoll,
-                         int weich, QString smwsCode, QString art);
+                         int weich, QString smwsCode, QString art
+                         );
 
     Rum* createNewOwnedRum(QString brennerei, QString herkunft, int alter, float alkoholgehalt, QString destillationsDatum,
                        QString bottleDatum, QString fassTyp, QString region, int bewertung,
@@ -92,7 +97,8 @@ public:
                          int fuellStand, QString geschmacksrichtung, QString beschreibung,
                          QString flaschennummer,
                          QString abfueller, int torfig, int fruchtig, int leicht, int gehaltvoll,
-                         int weich, QString smwsCode, QString art);
+                         int weich, QString smwsCode, QString art
+                         );
 
     Rum* createNewTestedRum(QString brennerei, QString herkunft, int alter, float alkoholgehalt, QString destillationsDatum,
                        QString bottleDatum, QString fassTyp, QString region, int bewertung,
@@ -120,23 +126,34 @@ public:
 
 
 
+    //testedW
+    void storeAllTestedWhiskyInArray(QJsonObject &json) const;
+    void saveTestedWhiskyToFile(QString filename);
+
+    void getAllTestedWhiskyFromArray(const QJsonObject &json);
+    void readTestedWhiskyFromFile(QString filename);
+
+    //testedR
+    void storeAllTestedRumInArray(QJsonObject &json) const;
+    void saveTestedRumToFile(QString filename);
+
+    void getAllTestedRumFromArray(const QJsonObject &json);
+    void readTestedRumFromFile(QString filename);
+
 
 
     //========== Getter && Setter ==========
-    int getAllOwnedSpirituoseSize() const {return allOwnedSpirituosen.size();}
+    //int getAllOwnedSpirituoseSize() const {return allOwnedSpirituosen.size();}
     int getAllOwnedWhiskySize() const {return allOwnedWhisky.size();}
     int getAllOwnedRumSize() const {return allOwnedRum.size();}
+    int getAllTestedRumSize() const {return allTestedRum.size();}
+    int getAllTestedWhiskySize() const {return allTestedWhisky.size();}
 
     QVector<Whisky*> getAllOwnedWhisky() const {return allOwnedWhisky;}
     QVector<Rum*> getAllOwnedRum() const {return allOwnedRum;}
 
-    unsigned int getWhiskyCounter() const {return whiskyCounter;}
-    void setWhiskyCounter(unsigned int wc) {this->whiskyCounter = wc;}
-
-    unsigned int getRumCounter() const {return rumCounter;}
-    void setRumCounter(unsigned int wc) {this->rumCounter = wc;}
-
-
+    QVector<Whisky*> getAllTestedWhisky() const {return allTestedWhisky;}
+    QVector<Rum*> getAllTestedRum() const {return allTestedRum;}
 
 private:
    QVector<Spirituose*> allOwnedSpirituosen;
@@ -146,9 +163,6 @@ private:
 
    QVector<Rum*> allTestedRum;
    QVector<Whisky*> allTestedWhisky;
-
-   unsigned int rumCounter = 0;
-   unsigned int whiskyCounter = 0;
 };
 
 #endif // STORING_H

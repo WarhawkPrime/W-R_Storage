@@ -29,6 +29,8 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         newliquordialog.cpp \
+        newrumdialog.cpp \
+        newwhiskydialog.cpp \
         rum.cpp \
         storing.cpp \
         whisky.cpp
@@ -36,6 +38,8 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
         newliquordialog.h \
+        newrumdialog.h \
+        newwhiskydialog.h \
         rum.h \
         spirituose.h \
         storing.h \
@@ -43,7 +47,9 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui \
-        newliquordialog.ui
+        newliquordialog.ui \
+        newrumdialog.ui \
+        newwhiskydialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
