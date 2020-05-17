@@ -1,6 +1,3 @@
 <RCC>
     <qresource prefix="/txt"/>
-    <qresource prefix="/">
-        <file>../../../Pictures/Saved Pictures/pergament.jpg</file>
-    </qresource>
 </RCC>
